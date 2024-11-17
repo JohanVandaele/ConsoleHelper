@@ -1007,7 +1007,7 @@ public static partial class Program
 
 		while (true)
 		{
-			if (displayValues.Any())
+			if (!displayValues.Any())
 			{
 				Console.WriteLine();
 				ToonFoutBoodschap("Lege lijst");

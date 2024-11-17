@@ -456,7 +456,7 @@ public static partial class Program
         var muziekinstrumenten = new List<MuziekInstrument>
         {
             new() { Id = 01, NaamNL = "Trompet",NaamEN = "Trumpet", Categorie = "Koperblazer" },
-            new() { Id = 02, NaamNL = "Electrische Gitaar",NaamEN = "Electric Guitar", Categorie = "Tokkelinstrument" },
+            new() { Id = 02, NaamNL = "Elektrische Gitaar",NaamEN = "Electric Guitar", Categorie = "Tokkelinstrument" },
             new() { Id = 03, NaamNL = "Clarinet",NaamEN = "Clarinet", Categorie = "Houtblazer" },
             new() { Id = 04, NaamNL = "Hoorn",NaamEN = "Horn", Categorie = "Koperblazer" },
             new() { Id = 05, NaamNL = "Saxofoon",NaamEN = "Saxophone", Categorie = "Houtblazer" },
@@ -487,16 +487,16 @@ public static partial class Program
 
         var selectieLijst = muziekinstrumenten.Where(m => m.Categorie == "Toetsinstrument").ToList();   // Filter (eventueel) de lijst
 
-        var muziekinstrument = (MuziekInstrument)LeesLijst(                                             // Cast van object naar MuziekInstrument
-              $"Lijst van Muziekinstrumenten" +                                                   // Titel
+        var muziekinstrument = (MuziekInstrument?)LeesLijst(                              // Cast van object naar MuziekInstrument
+              $"Lijst van Muziekinstrumenten" +                                     // Titel
                 $"\n{"",8}{"----------------",-20}{"---------",-15}" +
                 $"\n{"",8}{"Nederlandse Naam",-20}{"Categorie",-15}" +
                 $"\n{"",8}{"----------------",-20}{"---------",-15}"
-            , selectieLijst                                                                             // Lijst van de objecten
-            , selectieLijst.Select(m => $"{m.NaamNL,-20}{m.Categorie,-15}").ToList()                    // Display lijst : wordt op het scherm getoond
-            , SelectionMode.Single                                                                      // SelectionMode : je kan hier slechts 1 keuze maken
-            , OptionMode.Optional)                                                                      // OptionMode    : je bent hier niet verplicht om een keuze te maken
-            .FirstOrDefault()!;                                                                         // Neem het eerste object uit de lijst
+            , selectieLijst                                                               // Lijst van de objecten
+            , selectieLijst.Select(m => $"{m.NaamNL,-20}{m.Categorie,-15}").ToList()     // Display lijst : wordt op het scherm getoond
+            , SelectionMode.Single                                                        // SelectionMode : je kan hier slechts 1 keuze maken
+            , OptionMode.Optional)                                                        // OptionMode    : je bent hier niet verplicht om een keuze te maken
+            .FirstOrDefault();                                                            // Neem het eerste object uit de lijst
 
         ToonSuccessBoodschap(muziekinstrument == null ? "U hebt geen keuze gemaakt" : $"U koos voor '{muziekinstrument.NaamNL}'");
 
@@ -509,7 +509,7 @@ public static partial class Program
         selectieLijst = muziekinstrumenten.Where(m => m.Categorie == "Koperblazer").ToList();
 
         AlternateRows = false;
-        muziekinstrument = (MuziekInstrument)LeesLijst(
+        muziekinstrument = (MuziekInstrument?)LeesLijst(
              $"Lijst van Muziekinstrumenten" +
                $"\n{"",8}{"----------------",-20}{"---------",-15}" +
                $"\n{"",8}{"Nederlandse Naam",-20}{"Categorie",-15}" +
@@ -517,7 +517,7 @@ public static partial class Program
            , selectieLijst
            , selectieLijst.Select(m => $"{m.NaamNL,-20}{m.Categorie,-15}").ToList()
            , SelectionMode.Single)
-           .FirstOrDefault()!;
+           .FirstOrDefault();
         AlternateRows = AlternateRowsOrig;
 
         ToonSuccessBoodschap(muziekinstrument == null ? "U hebt geen keuze gemaakt" : $"U koos voor '{muziekinstrument.NaamNL}'");
@@ -532,7 +532,7 @@ public static partial class Program
         selectieLijst = muziekinstrumenten.Where(m => m.Categorie == "Koperblazer").ToList();
 
         AlternateRows = false;
-        muziekinstrument = (MuziekInstrument)LeesLijst(
+        muziekinstrument = (MuziekInstrument?)LeesLijst(
              $"Lijst van Muziekinstrumenten" +
                $"\n{"",8}{"----------------",-20}{"---------",-15}" +
                $"\n{"",8}{"Nederlandse Naam",-20}{"Categorie",-15}" +
@@ -541,7 +541,7 @@ public static partial class Program
            , selectieLijst.Select(m => $"{m.NaamNL,-20}{m.Categorie,-15}").ToList()
            , SelectionMode.Single
            , OptionMode.Mandatory)
-           .FirstOrDefault()!;
+           .FirstOrDefault();
         AlternateRows = AlternateRowsOrig;
 
         ToonSuccessBoodschap(muziekinstrument == null ? "U hebt geen keuze gemaakt" : $"U koos voor '{muziekinstrument.NaamNL}'");
@@ -565,7 +565,7 @@ public static partial class Program
             , selectieLijst.Select(m => $"{m.NaamNL,-20}{m.Categorie,-15}").ToList()
             , SelectionMode.Multiple);
 
-        if (gekozenLijst.Count == 0) ToonSuccessBoodschap("U hebt geen keuze gemaakt");
+        if (gekozenLijst.Any()) ToonSuccessBoodschap("U hebt geen keuze gemaakt");
         else foreach (MuziekInstrument mi in gekozenLijst) ToonSuccessBoodschap($"U koos voor '{mi.NaamNL}'");
 
         DrukToets();
@@ -583,7 +583,7 @@ public static partial class Program
            , muziekinstrumenten.Select(m => $"{m.NaamNL,-20}{m.Categorie,-15}").ToList()
            , SelectionMode.Multiple);
 
-        if (gekozenLijst.Count == 0) ToonSuccessBoodschap("U hebt geen keuze gemaakt");
+        if (!gekozenLijst.Any()) ToonSuccessBoodschap("U hebt geen keuze gemaakt");
         else foreach (MuziekInstrument mi in gekozenLijst) ToonSuccessBoodschap($"U koos voor '{mi.NaamNL}'");
 
         DrukToets();
@@ -602,7 +602,7 @@ public static partial class Program
            , SelectionMode.Multiple
            , OptionMode.Mandatory);
 
-        if (gekozenLijst.Count == 0) ToonSuccessBoodschap("U hebt geen keuze gemaakt");
+        if (!gekozenLijst.Any()) ToonSuccessBoodschap("U hebt geen keuze gemaakt");
         else foreach (MuziekInstrument mi in gekozenLijst) ToonSuccessBoodschap($"U koos voor '{mi.NaamNL}'");
 
         // --- SelectionMode.None
@@ -845,17 +845,17 @@ public static partial class Program
         title += $"{"Code ",-6}{"char",-5}{"Control",-8}{"Digit",-6}{"Letter",-7}{"Lower",-6}{"Number",-7}{"Punctuation",-12}{"Separator",-10}{"Symbol",-7}{"WhiteSpace",-11}{"LetterOrDigit",-14}\n";
         title += $"{"─────",-6}{"────",-5}{"───────",-8}{"─────",-6}{"──────",-7}{"─────",-6}{"──────",-7}{"───────────",-12}{"─────────",-10}{"──────",-7}{"──────────",-11}{"─────────────",-14}";
 
-        var displayValues = chars.Where(i => choices.Count == 0 ? true :
-                                               (i.IsControl && choices.Contains("IsControl"))
-                                            || (i.IsDigit && choices.Contains("IsDigit"))
-                                            || (i.IsLetter && choices.Contains("IsLetter"))
-                                            || (i.IsLetterOrDigit && choices.Contains("IsLetterOrDigit"))
-                                            || (i.IsLower && choices.Contains("IsLower"))
-                                            || (i.IsNumber && choices.Contains("IsNumber"))
-                                            || (i.IsPunctuation && choices.Contains("IsPunctuation"))
-                                            || (i.IsSeparator && choices.Contains("IsSeparator"))
-                                            || (i.IsSymbol && choices.Contains("IsSymbol"))
-                                            || (i.IsWhiteSpace && choices.Contains("IsWhiteSpace"))
+        var displayValues = chars.Where(i => !choices.Any()
+                                             || (i.IsControl && choices.Contains("IsControl"))
+                                             || (i.IsDigit && choices.Contains("IsDigit"))
+                                             || (i.IsLetter && choices.Contains("IsLetter"))
+                                             || (i.IsLetterOrDigit && choices.Contains("IsLetterOrDigit"))
+                                             || (i.IsLower && choices.Contains("IsLower"))
+                                             || (i.IsNumber && choices.Contains("IsNumber"))
+                                             || (i.IsPunctuation && choices.Contains("IsPunctuation"))
+                                             || (i.IsSeparator && choices.Contains("IsSeparator"))
+                                             || (i.IsSymbol && choices.Contains("IsSymbol"))
+                                             || (i.IsWhiteSpace && choices.Contains("IsWhiteSpace"))
                                         )
                                 .Select(i => $"{i.Number:D5} {(i.Number == 91 ? "[" : i.Number == 93 ? " " : i.Ch),-5}{Bool2Icon(i.IsControl),-8 + 1}{Bool2Color(i.IsDigit),-6}{new string(' ', 10).Substring(0, i.IsDigit ? 2 : 1)}{Bool2PlusMin(i.IsLetter),-7}{i.IsLower,-6}{i.IsNumber,-7}{i.IsPunctuation,-12}{i.IsSeparator,-10}{i.IsSymbol,-7}{i.IsWhiteSpace,-11}{i.IsLetterOrDigit,-14}").ToList();
 

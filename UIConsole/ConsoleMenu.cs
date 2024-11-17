@@ -113,7 +113,7 @@ public partial class Program
 
     private const string ExitTextSubMenu = "E<x>it";
     private const string ExitTextHoofdMenu = "E<x>it toepassing";
-    private const string Versie = " - Johan Vandaele (VDAB) - Versie 20240308";
+    private const string Versie = " - Johan Vandaele - Versie 20250101";
 
     // =======================================
     // S E T T I N G S

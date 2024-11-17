@@ -834,7 +834,7 @@ public static partial class Program
 			//}
 
 			// Finish
-			if (input == null) break;
+			if (input == null) break;	// ???
 
 			input = input.ToUpper();
 
@@ -1007,7 +1007,7 @@ public static partial class Program
 
 		while (true)
 		{
-			if (displayValues.Count == 0)
+			if (displayValues.Any())
 			{
 				Console.WriteLine();
 				ToonFoutBoodschap("Lege lijst");
@@ -1750,7 +1750,7 @@ public static class Ansi
 	public static readonly string LoCol = $"{Csi}2m";   // 22
 
 	public static readonly string BoldOn = Console.IsOutputRedirected ? "" : $"{Csi}1m";
-	public static readonly string DimOn = Console.IsOutputRedirected ? "" : $"{Csi}2m";   // 22
+	public static readonly string DimOn = Console.IsOutputRedirected ? "" : $"{Csi}2m";
 	public static readonly string ItalicOn = Console.IsOutputRedirected ? "" : $"{Csi}3m";
 	public static readonly string UnderlineOn = Console.IsOutputRedirected ? "" : $"{Csi}4m";
 	public static readonly string BlinkOn = Console.IsOutputRedirected ? "" : $"{Csi}5m";
@@ -2157,9 +2157,10 @@ public static class Ansi
 	{
 		Console.WriteLine("\nDecorations:\n");
 
-		Console.WriteLine($"{BoldOn}Bold{Ansi.BoldOf}, {UnderlineOn}Underline{UnderlineOf}, {ReverseOn}Reverse{ReverseOf}, {BlinkOn}Blink{BlinkOf} , {ItalicOn}Italic{ItalicOf}");
+        Console.WriteLine($"{BoldOn}Bold{BoldOf}, {UnderlineOn}Underline{UnderlineOf}, {ReverseOn}Reverse{ReverseOf}, {BlinkOn}Blink{BlinkOf} , {ItalicOn}Italic{ItalicOf}");	// ???
+        Console.WriteLine($"{BoldOn}Bold{FNORMAL}, {BoldOf}DubbelUnderline{UnderlineOf}, {UnderlineOn}Underline{UnderlineOf}, {ReverseOn}Reverse{ReverseOf}, {BlinkOn}Blink{BlinkOf} , {ItalicOn}Italic{ItalicOf}");	// ???
 
-		Console.WriteLine($"{Program.ConsBGC}{Program.ConsFGC}");
+        Console.WriteLine($"{Program.ConsBGC}{Program.ConsFGC}");
 		Program.DrukToets();
 
 		// - - - - - - 
@@ -2212,7 +2213,7 @@ public static class Ansi
 		Console.WriteLine("\n256 colors:");
 
 		for (var i = 0; i <= 255; i++) Console.Write($"{(i % 32 == 0 ? "\n" : "")}{FColor(i)} {string.Format("{0:000}", i),-3} {FNORMAL}");
-		Console.WriteLine($"{Program.ConsBGC}¨{Program.ConsFGC}\n");
+		Console.WriteLine($"{Program.ConsBGC} {Program.ConsFGC}\n");
 		for (var i = 0; i <= 255; i++) Console.Write($"{(i % 32 == 0 ? "\n" : "")}{BColor(i)} {string.Format("{0:000}", i),-3} {BNORMAL}");
 
 		Console.WriteLine($"{Program.ConsBGC}{Program.ConsFGC}");

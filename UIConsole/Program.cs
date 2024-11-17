@@ -5,7 +5,7 @@ public static partial class Program
     // ----
     // Menu
     // ----
-    public static SubMenu Menu = new    (
+    public static SubMenu Menu = new(
         01, null, " Hoofdmenu ", MenuItemActive.Enabled, MenuItemVisible.Visible,
         [
             new SubMenu(01, "<I>nput", "Input", MenuItemActive.Enabled, MenuItemVisible.Visible,
@@ -45,11 +45,11 @@ public static partial class Program
     {
         MenuGegevens = $"Demo toepassing voor het testen van de ConsoleHelper methods";
 
-		// - - - 
-		// Menu
-		// - - - 
-		//PrintMenu("UI Demo", Menu);		// Toon menustructuur
-		ToonMenu("UI Demo", Menu);          // Start het programma
+        // - - - 
+        // Menu
+        // - - - 
+        //PrintMenu("UI Demo", Menu);		// Toon menustructuur
+        ToonMenu("UI Demo", Menu);          // Start het programma
     }
 
     // -----------
@@ -727,7 +727,6 @@ public static partial class Program
         website = LeesWebsiteUrl("Website", OptionMode.Mandatory);
 
         ToonSuccessBoodschap(website == null ? "U maakte geen keuze" : $"Website is '{website}'");
-
     }
 
     // -------------
@@ -768,19 +767,17 @@ public static partial class Program
     // ------------------
     private static void Item17()
     {
+        //WriteLineWithColor($"Ik zal je iets van [green]de kleine Johannes[/green] vertellen.  Het heeft veel van een sprookje, mijn verhaal, maar het is toch allemaal echt gebeurd.\n\n[Red]De kleine Johannes[/Red] is een uniek hoogtepunt in de Nederlandse literatuur.\nVertaald in tientallen talen, onderwerp van talloze studies en boekverslagen van scholieren heeft het zichzelf bewezen als een klassiek werk dat met het verstrijken van de tijd zijn glans heeft behouden.\nDeze hertaling heeft de hindernissen die opgeworpen werden door het negentiende - eeuwse taalgebruik opgeheven. In sprankelende taal worden de ontwikkelingsfasen van [cyan]de kleine Johannes[/cyan] \nverbeeld door personages die de natuur, de liefde, het geluk, de kennis, het spirituele en de vluchtigheid van het leven vertegenwoordigen.\nDe herkenbaarheid en de diepte van dit klank-en kleurrijke sprookje is in al haar eenvoud zo schitterend dat het blijft fascineren.");
+        //Console.WriteLine();
 
+        Console.Write($"Ik zal je iets van {Ansi.FDGREEN}de kleine Johannes{ConsFGC} vertellen.  Het heeft veel van een sprookje, mijn verhaal, maar het is toch allemaal echt gebeurd.\n\n{Ansi.FDRED}De kleine Johannes{ConsFGC} is een uniek hoogtepunt in de Nederlandse literatuur.\nVertaald in tientallen talen, onderwerp van talloze studies en boekverslagen van scholieren heeft het zichzelf bewezen als een klassiek werk dat met het verstrijken van de tijd zijn glans heeft behouden.\nDeze hertaling heeft de hindernissen die opgeworpen werden door het negentiende - eeuwse taalgebruik opgeheven. In sprankelende taal worden de ontwikkelingsfasen van {Ansi.FDCYAN}de kleine Johannes{ConsFGC} \nverbeeld door personages die de natuur, de liefde, het geluk, de kennis, het spirituele en de vluchtigheid van het leven vertegenwoordigen.\nDe herkenbaarheid en de diepte van dit klank-en kleurrijke sprookje is in al haar eenvoud zo schitterend dat het blijft fascineren.");
+        Console.WriteLine();
+    }
 
-		//WriteLineWithColor($"Ik zal je iets van [green]de kleine Johannes[/green] vertellen.  Het heeft veel van een sprookje, mijn verhaal, maar het is toch allemaal echt gebeurd.\n\n[Red]De kleine Johannes[/Red] is een uniek hoogtepunt in de Nederlandse literatuur.\nVertaald in tientallen talen, onderwerp van talloze studies en boekverslagen van scholieren heeft het zichzelf bewezen als een klassiek werk dat met het verstrijken van de tijd zijn glans heeft behouden.\nDeze hertaling heeft de hindernissen die opgeworpen werden door het negentiende - eeuwse taalgebruik opgeheven. In sprankelende taal worden de ontwikkelingsfasen van [cyan]de kleine Johannes[/cyan] \nverbeeld door personages die de natuur, de liefde, het geluk, de kennis, het spirituele en de vluchtigheid van het leven vertegenwoordigen.\nDe herkenbaarheid en de diepte van dit klank-en kleurrijke sprookje is in al haar eenvoud zo schitterend dat het blijft fascineren.");
-		//Console.WriteLine();
-
-		Console.Write($"Ik zal je iets van {Ansi.FDGREEN}de kleine Johannes{ConsFGC} vertellen.  Het heeft veel van een sprookje, mijn verhaal, maar het is toch allemaal echt gebeurd.\n\n{Ansi.FDRED}De kleine Johannes{ConsFGC} is een uniek hoogtepunt in de Nederlandse literatuur.\nVertaald in tientallen talen, onderwerp van talloze studies en boekverslagen van scholieren heeft het zichzelf bewezen als een klassiek werk dat met het verstrijken van de tijd zijn glans heeft behouden.\nDeze hertaling heeft de hindernissen die opgeworpen werden door het negentiende - eeuwse taalgebruik opgeheven. In sprankelende taal worden de ontwikkelingsfasen van {Ansi.FDCYAN}de kleine Johannes{ConsFGC} \nverbeeld door personages die de natuur, de liefde, het geluk, de kennis, het spirituele en de vluchtigheid van het leven vertegenwoordigen.\nDe herkenbaarheid en de diepte van dit klank-en kleurrijke sprookje is in al haar eenvoud zo schitterend dat het blijft fascineren.");
-		Console.WriteLine();
-	}
-
-	// --------
-	// LeesEnum
-	// --------
-	private static void Item18()
+    // --------
+    // LeesEnum
+    // --------
+    private static void Item18()
     {
         ToonInfoBoodschap($"");
         AlternateRows = false;

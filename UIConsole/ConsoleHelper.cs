@@ -1486,7 +1486,7 @@ public static class Ansi
 	public static readonly string CR = "\r";
 	public static readonly string SO = "\x0E";
 	public static readonly string SI = "\x0F";
-	public static readonly string ESC = "\x1b";
+	public static readonly string ESC = "\e"; // \x1b";
 	public static readonly string DEL = "\x7f"; // 
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

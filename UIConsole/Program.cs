@@ -38,6 +38,7 @@ public static partial class Program
                 ]),
             new MenuAction (03,"Voorbeeld werken met <l>ijsten","Voorbeeld lijst",MenuItemActive.Enabled, MenuItemVisible.Visible,Item19),
             new MenuAction (03,"<T>erminal Escape Codes","Escapecodes",MenuItemActive.Enabled, MenuItemVisible.Visible,Ansi.AnsiCodeTest),
+            new MenuAction (03,"Test <V>irtual Console Mode","Virtual Console Mode",MenuItemActive.Enabled, MenuItemVisible.Visible,Ansi.TestSetVirtualConsoleMode),
         ]
     );
 
